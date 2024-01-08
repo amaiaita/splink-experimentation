@@ -25,4 +25,4 @@ def plot_m_and_u(df,ax,marker=''):
     ax.set_xlabel('1 - u-probability')
     ax.set_ylabel('m-probability')
     i+=1  
-  
+
