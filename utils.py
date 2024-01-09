@@ -28,3 +28,14 @@ def plot_m_and_u(df,ax,marker=''):
     i+=1  
 
 subset_a = splink_datasets.historical_50k.sample(40000)
+subset_b = splink_datasets.historical_50k.sample(10000)
+
+merged_df = pd.merge(splink_datasets.historical_50k, subset_b, how='outer', indicator=True)
+
+# Filter out rows that are only in the subset DataFrame
+subset_df = merged_df[merged_df['_merge'] == 'right_only'].drop('_merge', axis=1)
+
+# Filter out rows that are in the subset DataFrame from the original DataFrame
+df = merged_df[merged_df['_merge'] == 'left_only'].drop('_merge', axis=1)
+
+subset_c = df.sample(10000)
